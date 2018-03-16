@@ -11,17 +11,23 @@ fn main() {
     let secret_number = rand::thread_rng().gen_range(1, 101);
     // Call for the number and display
     println!("The secret number is: {}", secret_number);
-    println!("Please enter your guess.");
-    // Setting input as immutable variable; input is string; setting variable to guess.
-    let mut guess = String::new();
-    // could also have been written as std::io::stdin; Handles user input
-    io::stdin().read_line(&mut guess)
-        .expect("Uh-oh, please enter your number again"); // Validates and returns fail text
-    println!("You guessed: {}", guess);
-    // Compare input and random secret_number
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("You guessed under."),
-        Ordering::Greater => println!("You guessed over."),
-        Ordering::Equal => println!("You got it!"),
+    // loop for the game to restart under each guess
+loop {
+        println!("Please enter your guess.");
+        // Setting input as immutable variable; input is string; setting variable to guess.
+        let mut guess = String::new();
+        // could also have been written as std::io::stdin; Handles user input
+        io::stdin().read_line(&mut guess)
+            .expect("Uh-oh, please enter your number again"); // Validates and returns fail text
+        // converting string to rust integer and removing whitespaces
+        let guess: u32 = guess.trim().parse()
+            .expect("Please type a number.");
+            println!("You guessed: {}", guess);
+            // Compare input and random secret_number
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("You guessed under."),
+            Ordering::Greater => println!("You guessed over."),
+            Ordering::Equal => println!("You got it!"),
+        }
     }
 }
