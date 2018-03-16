@@ -20,7 +20,7 @@ loop {
         io::stdin().read_line(&mut guess)
             .expect("Uh-oh, please enter your number again"); // Validates and returns fail text
         // converting string to rust integer and removing whitespaces
-        let guess: u32 = guess.trim().parse(){
+        let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
