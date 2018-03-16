@@ -18,4 +18,10 @@ fn main() {
     io::stdin().read_line(&mut guess)
         .expect("Uh-oh, please enter your number again"); // Validates and returns fail text
     println!("You guessed: {}", guess);
+    // Compare input and random secret_number
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("You guessed under."),
+        Ordering::Greater => println!("You guessed over."),
+        Ordering::Equal => println!("You got it!"),
+    }
 }
