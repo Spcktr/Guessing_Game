@@ -9,8 +9,6 @@ fn main() {
     println!("Guess the number.");
     // Generate random secret
     let secret_number = rand::thread_rng().gen_range(1, 10);
-    // Call for the number and display
-    println!("The secret number is: {}", secret_number);
     // loop for the game to restart under each guess
 loop {
         println!("Please enter your guess.");
