@@ -22,12 +22,16 @@ loop {
         // converting string to rust integer and removing whitespaces
         let guess: u32 = guess.trim().parse()
             .expect("Please type a number.");
-            println!("You guessed: {}", guess);
+            // echo user input
+        println!("You guessed: {}", guess);
             // Compare input and random secret_number
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("You guessed under."),
             Ordering::Greater => println!("You guessed over."),
-            Ordering::Equal => println!("You got it!"),
+            Ordering::Equal => {
+                println!("You got it!");
+                break;
+            }
         }
     }
 }
